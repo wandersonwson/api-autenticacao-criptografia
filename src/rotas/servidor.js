@@ -1,6 +1,10 @@
 import express from 'express';
+import { cadastrarUsuario, detalharUsuario, listarUsuarios } from '../controladores/usuarios.js';
 import { listarCarros, detalharCarro, cadastrarCarro, atualizarCarro, excluirCarro } from '../controladores/carros.js';
-const rotas = express();
+const rotas = express.Router();
+rotas.get("/usuario", listarUsuarios);
+rotas.get("/usuario/:id", detalharUsuario);
+rotas.post("/usuario", cadastrarUsuario);
 rotas.get('/carro', listarCarros);
 rotas.get('/carro/:id', detalharCarro);
 rotas.post('/carro', cadastrarCarro);
