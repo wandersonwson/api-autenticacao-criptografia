@@ -1,4 +1,4 @@
-import pool from "../database/conexao.js";
+import pool from "../dados/conexao.js";
 import bcrypt from "bcrypt";
 async function listarUsuarios(request, response) {
     try {

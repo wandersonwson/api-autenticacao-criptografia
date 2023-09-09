@@ -1,4 +1,4 @@
-import pool from '../database/conexao.js';
+import pool from '../dados/conexao.js';
 async function listarCarros(request, response) {
 	try {
 		const { rows } = await pool.query('select * from carros');
@@ -10,10 +10,7 @@ async function listarCarros(request, response) {
 async function detalharCarro(request, response) {
 	const { id } = request.params;
 	try {
-		const { rows, rowCount } = await pool.query(
-			'select * from carros where id = $1',
-			[id]
-		);
+		const { rows, rowCount } = await pool.query('select * from carros where id = $1', [id]);
 		if (rowCount < 1) {
 			return response.status(404).json({ mensagem: 'Carro não encontrado' });
 		}
@@ -38,10 +35,7 @@ async function atualizarCarro(request, response) {
 	const { id } = request.params;
 	const { modelo, marca, ano, cor, descricao } = request.body;
 	try {
-		const { rows, rowCount } = await pool.query(
-			'select * from carros where id = $1',
-			[id]
-		);
+		const { rowCount } = await pool.query('select * from carros where id = $1', [id]);
 		if (rowCount < 1) {
 			return response.status(404).json({ mensagem: 'Carro não encontrado' });
 		}
@@ -57,10 +51,7 @@ async function atualizarCarro(request, response) {
 async function excluirCarro(request, response) {
 	const { id } = request.params;
 	try {
-		const { rows, rowCount } = await pool.query(
-			'select * from carros where id = $1',
-			[id]
-		);
+		const { rowCount } = await pool.query('select * from carros where id = $1', [id]);
 		if (rowCount < 1) {
 			return response.status(404).json({ mensagem: 'Carro não encontrado' });
 		}
