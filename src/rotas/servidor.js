@@ -1,11 +1,12 @@
 import express from 'express';
+import validarUsuarioLogado from '../intermediarios/autenticacao.js';
+import { validarDadosLogin, validarDadosUsuario } from '../intermediarios/usuarios.js';
 import { cadastrarUsuario, detalharUsuario, listarUsuarios, login } from '../controladores/usuarios.js';
 import { listarCarros, detalharCarro, cadastrarCarro, atualizarCarro, excluirCarro } from '../controladores/carros.js';
-import validarUsuarioLogado from '../intermediarios/autenticacao.js';
 
 const rotas = express.Router();
-rotas.post("/usuario", cadastrarUsuario);
-rotas.post("/login", login);
+rotas.post("/usuario", validarDadosUsuario, cadastrarUsuario);
+rotas.post("/login", validarDadosLogin, login);
 
 rotas.use(validarUsuarioLogado);
 rotas.get("/usuario", listarUsuarios);
