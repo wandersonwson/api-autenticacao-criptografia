@@ -1,4 +1,4 @@
-import pool from "../dados/conexao.js";
+import { default as knex } from "../dados/conexao.js";
 function validarDadosLogin(request, response, next) {
     const { email, senha } = request.body;
     if (!email || !senha) {
@@ -12,8 +12,8 @@ async function validarDadosUsuario(request, response, next) {
         response.status(400).json({mensagem: "Todos os campos são obrigatórios"});
     }
     try {
-        const { rowCount } = await pool.query("select * from usuarios where email = $1", [email]);
-        if(rowCount > 0) {
+        const usuario = await knex("usuarios").where({ email: email }).first();
+        if(usuario) {
             response.status(400).json({mensagem: "Já existe um usuário cadastrado com o email infromado"});
         }
     } catch (error) {
