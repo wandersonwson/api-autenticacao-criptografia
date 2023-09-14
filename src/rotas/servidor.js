@@ -11,9 +11,9 @@ rotas.post("/login", validarDadosLogin, login);
 rotas.use(validarUsuarioLogado);
 rotas.get("/usuario", listarUsuarios);
 rotas.get("/usuario/:id", detalharUsuario);
+rotas.post('/carro', cadastrarCarro);
 rotas.get('/carro', listarCarros);
 rotas.get('/carro/:id', detalharCarro);
-rotas.post('/carro', cadastrarCarro);
 rotas.put('/carro/:id', atualizarCarro);
 rotas.delete('/carro/:id', excluirCarro);
 
