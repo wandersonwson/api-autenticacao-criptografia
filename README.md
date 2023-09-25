@@ -21,6 +21,8 @@ Com autenticação:
 
 - Servidor: [Express](https://www.npmjs.com/package/express);
 - Criptografia: [Bcrypt](https://www.npmjs.com/package/bcrypt);
-- Autenticação: [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken);
+- Autenticação: [JWT](https://www.npmjs.com/package/jsonwebtoken);
 - Banco de dados: [PG](https://www.npmjs.com/package/pg);
-- QueryBuilder: [Knex](https://www.npmjs.com/package/knex).
+- QueryBuilder: [Knex](https://www.npmjs.com/package/knex);
+- Variáveis de ambiente: [Dotenv](https://www.npmjs.com/package/dotenv);
+- Suporte de origem cruzada: [Cors](https://www.npmjs.com/package/cors).
