@@ -10,7 +10,7 @@ async function listarCarros(request, response) {
 async function detalharCarro(request, response) {
 	const { id } = request.params;
 	try {
-		const carro = await knex("carros").where({ id: id }).first();
+		const carro = await knex("carros").where({ id }).first();
 		if (!carro) {
 			return response.status(404).json({ mensagem: 'Carro não encontrado' });
 		}
@@ -22,8 +22,9 @@ async function detalharCarro(request, response) {
 async function cadastrarCarro(request, response) {
 	const { modelo, marca, ano, cor, descricao } = request.body;
 	try {
-		const carro = await knex("carros").returning("*").insert(
-			[{ modelo, marca, ano, cor, descricao }]
+		const carro = await knex("carros").insert(
+			[{ modelo, marca, ano, cor, descricao }],
+			['*']
 		);
 		return response.status(201).json(carro);
 	} catch (error) {
@@ -34,7 +35,7 @@ async function atualizarCarro(request, response) {
 	const { id } = request.params;
 	const { modelo, marca, ano, cor, descricao } = request.body;
 	try {
-		await knex("carros").where({ id: id }).update(
+		await knex("carros").where({ id }).update(
 			{ modelo, marca, ano, cor, descricao }
 		);
 		return response.status(204).send();
@@ -45,7 +46,7 @@ async function atualizarCarro(request, response) {
 async function excluirCarro(request, response) {
 	const { id } = request.params;
 	try {
-		const carro = await knex("carros").where({ id: id }).first();
+		const carro = await knex("carros").where({ id }).first();
 		if (!carro) {
 			return response.status(404).json({ mensagem: 'Carro não encontrado' });
 		}
