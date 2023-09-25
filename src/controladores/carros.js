@@ -23,7 +23,7 @@ async function cadastrarCarro(request, response) {
 	const { modelo, marca, ano, cor, descricao } = request.body;
 	try {
 		const carro = await knex("carros").returning("*").insert(
-			[{ modelo: modelo, marca: marca, ano: ano, cor: cor, descricao: descricao }]
+			[{ modelo, marca, ano, cor, descricao }]
 		);
 		return response.status(201).json(carro);
 	} catch (error) {
@@ -35,7 +35,7 @@ async function atualizarCarro(request, response) {
 	const { modelo, marca, ano, cor, descricao } = request.body;
 	try {
 		await knex("carros").where({ id: id }).update(
-			{ modelo: modelo, marca: marca, ano: ano, cor: cor, descricao: descricao }
+			{ modelo, marca, ano, cor, descricao }
 		);
 		return response.status(204).send();
 	} catch (error) {
