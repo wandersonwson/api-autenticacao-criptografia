@@ -1,7 +1,7 @@
 import { default as knex } from "../dados/conexao.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import chave from "../autenticacao/chaveJWT.js";
+const chave = process.env.JWT_KEY;
 async function listarUsuarios(request, response) {
     try {
         const usuarios = await knex("usuarios").select("id", "nome", "email").orderBy("id");

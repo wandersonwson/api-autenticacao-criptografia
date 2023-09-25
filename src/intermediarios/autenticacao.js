@@ -1,6 +1,6 @@
 import { default as knex } from "../dados/conexao.js";
 import jwt from "jsonwebtoken";
-import chave from "../autenticacao/chaveJWT.js";
+const chave = process.env.JWT_KEY;
 async function validarUsuarioLogado(request, response, next) {
     const { authorization } = request.headers;
     if (!authorization) {
