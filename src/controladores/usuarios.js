@@ -2,6 +2,7 @@ import { default as knex } from "../dados/conexao.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const chave = process.env.JWT_KEY;
+
 async function listarUsuarios(request, response) {
     try {
         const usuarios = await knex("usuarios").select("id", "nome", "email").orderBy("id");
@@ -53,4 +54,5 @@ async function login(request, response) {
         response.status(500).json({ mensagem: "Erro interno no servidor" });
     }
 }
+
 export { listarUsuarios, cadastrarUsuario, detalharUsuario, login };

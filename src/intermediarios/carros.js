@@ -1,15 +1,17 @@
 import { default as knex } from "../dados/conexao.js";
+
 async function validarDadosCarro(request, response, next) {
-    const { modelo, marca, ano, cor, descricao } = request.body;
-    if (!modelo || !marca || !ano || !cor || !descricao) {
-        return response.status(400).json({ mensagem: "Todos os campos são obrigatórios" });
+    const { modelo, marca, ano, cor } = request.body;
+    if (!modelo || !marca || !ano || !cor) {
+        return response.status(400).json({ mensagem: "Os campos modelo, marca, ano e cor são obrigatórios" });
     }
     next();
 }
 async function validarAtualizacaoCarro(request, response, next) {
-    const { modelo, marca, ano, cor, descricao } = request.body;
-    if (!modelo || !marca || !ano || !cor || !descricao) {
-        return response.status(400).json({ mensagem: "Todos os campos são obrigatórios" });
+    const { id } = request.params;
+    const { modelo, marca, ano, cor } = request.body;
+    if (!modelo || !marca || !ano || !cor) {
+        return response.status(400).json({ mensagem: "Os campos modelo, marca, ano e cor são obrigatórios" });
     }
     try {
         const carro = await knex("carros").where({ id: id }).first();
@@ -21,4 +23,5 @@ async function validarAtualizacaoCarro(request, response, next) {
     }
     next();
 }
+
 export { validarDadosCarro, validarAtualizacaoCarro };

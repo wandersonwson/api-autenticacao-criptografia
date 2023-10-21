@@ -1,4 +1,5 @@
 import { default as knex } from "../dados/conexao.js";
+
 function validarDadosLogin(request, response, next) {
     const { email, senha } = request.body;
     if (!email || !senha) {
@@ -21,4 +22,5 @@ async function validarDadosUsuario(request, response, next) {
     }
     next();
 }
+
 export { validarDadosLogin, validarDadosUsuario };

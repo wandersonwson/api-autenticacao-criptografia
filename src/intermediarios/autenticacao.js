@@ -1,6 +1,7 @@
 import { default as knex } from "../dados/conexao.js";
 import jwt from "jsonwebtoken";
 const chave = process.env.JWT_KEY;
+
 async function validarUsuarioLogado(request, response, next) {
     const { authorization } = request.headers;
     if (!authorization) {
@@ -18,4 +19,5 @@ async function validarUsuarioLogado(request, response, next) {
     }
     next();
 }
+
 export default validarUsuarioLogado;

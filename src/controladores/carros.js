@@ -1,4 +1,5 @@
 import { default as knex } from '../dados/conexao.js';
+
 async function listarCarros(request, response) {
 	try {
 		const carros = await knex("carros").orderBy("id");
@@ -56,6 +57,7 @@ async function excluirCarro(request, response) {
 		return response.status(500).json('Erro interno no servidor');
 	}
 }
+
 export {
 	listarCarros,
 	detalharCarro,

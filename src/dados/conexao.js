@@ -1,4 +1,5 @@
 import knex from "knex";
+
 const database = knex({
 	client: 'pg',
 	connection: {
@@ -10,4 +11,5 @@ const database = knex({
 		ssl: { rejectUnauthorized: false }
 	}
 });
+
 export default database;
